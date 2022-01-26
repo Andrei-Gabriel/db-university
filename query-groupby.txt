@@ -5,7 +5,8 @@
     FROM `teachers`
     WHERE `office_address` = `office_address`
     GROUP BY `office_address`  
+    HAVING `COUNT(id)` > 1
     ORDER BY `COUNT(id)`  DESC
-    
+
 3. Calcolare la media dei voti di ogni appello d'esame
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento
