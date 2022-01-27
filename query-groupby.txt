@@ -4,10 +4,14 @@
     GROUP BY `ANNO`  
     ORDER BY `N-ISCRITTI`  DESC
 
+    SELECT COUNT(`id`) AS `N-ISCRITTI`, YEAR(`enrolment_date`)
+    FROM `students`
+    GROUP BY YEAR(`enrolment_date`)
+    ORDER BY `N-ISCRITTI`  DESC
+
 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
     SELECT COUNT(id), `office_address`
     FROM `teachers`
-    WHERE `office_address` = `office_address`
     GROUP BY `office_address`  
     HAVING `COUNT(id)` > 1
     ORDER BY `COUNT(id)`  DESC
@@ -17,6 +21,13 @@
     FROM `exam_student`
     GROUP BY `exam_id`
     -- es. exam_id = 5 non c'è
+
+    -- SELECT ROUND(AVG(`vote`)) senza parte decimale
+    SELECT ROUND(AVG(`vote`),1) AS `media_voto`, `exam_id`
+    FROM `exam_student`
+    GROUP BY `exam_id`  
+    HAVING `media_voto` >= 18  
+    ORDER BY `media_voto`  ASC
 
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento
     SELECT COUNT(`id`), `department_id`
