@@ -4,6 +4,21 @@
     GROUP BY `ANNO`  
     ORDER BY `N-ISCRITTI`  DESC
 
+    SELECT 
+	COUNT(`id`) AS `N-STUDENTS`, 
+    YEAR(`enrolment_date`) AS `YEAR`, 
+    MONTH(`enrolment_date`) AS `MONTH`
+    FROM `students`
+    GROUP BY `YEAR`, `MONTH`  
+    ORDER BY `MONTH` ASC
+
+    -- Quanti studenti si sono iscritti per ogni mese di ogni anno
+    -- Con la M minuscula stampa le date in lettere, ma casini con ORDER
+    SELECT COUNT(`id`), DATE_FORMAT(`enrolment_date`, "%Y-%m") AS `DATE`
+    FROM `students`
+    GROUP BY `DATE`  
+    ORDER BY `DATE`  ASC
+
     SELECT COUNT(`id`) AS `N-ISCRITTI`, YEAR(`enrolment_date`)
     FROM `students`
     GROUP BY YEAR(`enrolment_date`)
